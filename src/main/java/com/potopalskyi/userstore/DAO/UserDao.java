@@ -1,4 +1,4 @@
-package com.potopalskyi.userstore.DAO;
+package com.potopalskyi.userstore.dao;
 
 import com.potopalskyi.userstore.entity.User;
 

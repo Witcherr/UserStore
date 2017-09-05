@@ -2,8 +2,8 @@ package com.potopalskyi.userstore.web;
 
 import com.potopalskyi.userstore.entity.User;
 import com.potopalskyi.userstore.service.IUserService;
-import com.potopalskyi.userstore.util.PageGenerator;
-import com.potopalskyi.userstore.util.ParserRequestToUser;
+import com.potopalskyi.userstore.web.util.PageGenerator;
+import com.potopalskyi.userstore.web.util.RequestToUserParser;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +33,7 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = ParserRequestToUser.getUserFromRequest(req);
+        User user = RequestToUserParser.getUserFromRequest(req);
         userService.add(user);
         resp.setContentType("text/html;charset=utf-8");
     }

@@ -1,10 +1,10 @@
-package com.potopalskyi.userstore.util;
+package com.potopalskyi.userstore.web.util;
 
 import com.potopalskyi.userstore.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class ParserRequestToUser {
+public class RequestToUserParser {
 
     public static User getUserFromRequest(HttpServletRequest req){
         User user = new User();

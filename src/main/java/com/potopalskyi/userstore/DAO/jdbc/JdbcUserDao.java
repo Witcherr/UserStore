@@ -1,8 +1,8 @@
-package com.potopalskyi.userstore.DAO.jdbc;
+package com.potopalskyi.userstore.dao.jdbc;
 
-import com.potopalskyi.userstore.DAO.ConnectionInstance;
-import com.potopalskyi.userstore.DAO.UserDao;
-import com.potopalskyi.userstore.DAO.mapper.UserRowMapper;
+import com.potopalskyi.userstore.dao.ConnectionInstance;
+import com.potopalskyi.userstore.dao.UserDao;
+import com.potopalskyi.userstore.dao.mapper.UserRowMapper;
 import com.potopalskyi.userstore.entity.User;
 
 import java.sql.*;

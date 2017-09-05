@@ -1,4 +1,4 @@
-package com.potopalskyi.userstore.DAO.mapper;
+package com.potopalskyi.userstore.dao.mapper;
 
 import com.potopalskyi.userstore.entity.User;
 import org.junit.Test;

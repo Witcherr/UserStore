@@ -1,6 +1,6 @@
 package com.potopalskyi.userstore.service.impl;
 
-import com.potopalskyi.userstore.DAO.UserDao;
+import com.potopalskyi.userstore.dao.UserDao;
 import com.potopalskyi.userstore.entity.User;
 import com.potopalskyi.userstore.service.IPhoneService;
 import com.potopalskyi.userstore.service.IUserService;

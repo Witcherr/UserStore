@@ -1,7 +1,7 @@
-package com.potopalskyi.userstore.DAO.jdbc;
+package com.potopalskyi.userstore.dao.jdbc;
 
-import com.potopalskyi.userstore.DAO.ConnectionInstance;
-import com.potopalskyi.userstore.DAO.PhoneDao;
+import com.potopalskyi.userstore.dao.ConnectionInstance;
+import com.potopalskyi.userstore.dao.PhoneDao;
 import com.potopalskyi.userstore.entity.Phone;
 
 import java.sql.*;
@@ -14,11 +14,6 @@ public class JdbcPhoneDao implements PhoneDao {
 
     public JdbcPhoneDao(){
         connection = ConnectionInstance.getInstance();
-    }
-
-    @Override
-    public List<Phone> getAll() {
-        return null;
     }
 
     @Override
@@ -35,7 +30,8 @@ public class JdbcPhoneDao implements PhoneDao {
 
     @Override
     public long getMaxId() {
-        try (Statement statement = this.connection.createStatement();
+        try (Connection connection = this.connection;
+                Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(SQL_QUERY_GET_MAX_ID);) {
             long id = resultSet.getLong("maxid");
             return id;

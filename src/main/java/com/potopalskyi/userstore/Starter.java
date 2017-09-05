@@ -1,11 +1,12 @@
-package com.potopalskyi.userstore.web;
+package com.potopalskyi.userstore;
 
-import com.potopalskyi.userstore.DAO.PhoneDao;
-import com.potopalskyi.userstore.DAO.UserDao;
-import com.potopalskyi.userstore.DAO.jdbc.JdbcPhoneDao;
-import com.potopalskyi.userstore.DAO.jdbc.JdbcUserDao;
+import com.potopalskyi.userstore.dao.PhoneDao;
+import com.potopalskyi.userstore.dao.UserDao;
+import com.potopalskyi.userstore.dao.jdbc.JdbcPhoneDao;
+import com.potopalskyi.userstore.dao.jdbc.JdbcUserDao;
 import com.potopalskyi.userstore.service.impl.PhoneService;
 import com.potopalskyi.userstore.service.impl.UserService;
+import com.potopalskyi.userstore.web.UserServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;

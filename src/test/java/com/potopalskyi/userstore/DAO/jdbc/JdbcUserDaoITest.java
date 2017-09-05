@@ -1,11 +1,9 @@
-package com.potopalskyi.userstore.DAO.jdbc;
+package com.potopalskyi.userstore.dao.jdbc;
 
 import com.potopalskyi.userstore.entity.User;
 import org.junit.Test;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class JdbcUserDaoITest {
 

@@ -1,4 +1,4 @@
-package com.potopalskyi.userstore.util;
+package com.potopalskyi.userstore.web.util;
 
 import com.potopalskyi.userstore.entity.User;
 import freemarker.template.Configuration;
