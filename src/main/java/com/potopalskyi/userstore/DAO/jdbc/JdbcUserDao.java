@@ -41,7 +41,7 @@ public class JdbcUserDao implements UserDao {
 
     @Override
     public void add(User user) {
-        try (Connection connection = this.connection){
+        try {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_SAVE_USER);
             preparedStatement.setString(1, user.getFirstName());
             preparedStatement.setString(2, user.getLastName());

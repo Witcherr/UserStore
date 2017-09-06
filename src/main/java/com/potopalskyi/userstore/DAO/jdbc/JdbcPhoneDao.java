@@ -12,13 +12,13 @@ public class JdbcPhoneDao implements PhoneDao {
     private final static String SQL_QUERY_GET_MAX_ID = "select max(id) maxid from phones";
     private Connection connection;
 
-    public JdbcPhoneDao(){
+    public JdbcPhoneDao() {
         connection = ConnectionInstance.getInstance();
     }
 
     @Override
     public void add(Phone phone) {
-        try (Connection connection = this.connection){
+        try {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_SAVE_PHONE);
             preparedStatement.setString(1, phone.getCountryCode());
             preparedStatement.setString(2, phone.getInnerNumber());
@@ -30,9 +30,9 @@ public class JdbcPhoneDao implements PhoneDao {
 
     @Override
     public long getMaxId() {
-        try (Connection connection = this.connection;
-                Statement statement = connection.createStatement();
+        try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(SQL_QUERY_GET_MAX_ID);) {
+            resultSet.next();
             long id = resultSet.getLong("maxid");
             return id;
         } catch (SQLException e) {

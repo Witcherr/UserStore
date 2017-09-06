@@ -7,6 +7,7 @@ import com.potopalskyi.userstore.dao.jdbc.JdbcUserDao;
 import com.potopalskyi.userstore.service.impl.PhoneService;
 import com.potopalskyi.userstore.service.impl.UserService;
 import com.potopalskyi.userstore.web.UserServlet;
+import com.potopalskyi.userstore.web.UsersServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -27,8 +28,12 @@ public class Starter {
         UserServlet userServlet = new UserServlet();
         userServlet.setUserService(userService);
 
+        UsersServlet usersServlet = new UsersServlet();
+        usersServlet.setUserService(userService);
+
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.addServlet(new ServletHolder(userServlet), "/addUser");
+        context.addServlet(new ServletHolder(usersServlet), "/users");
 
         Server server = new Server(8080);
         server.setHandler(context);
