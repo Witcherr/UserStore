@@ -13,7 +13,9 @@ public class ConnectionInstance {
     public static Connection getInstance() {
         if (connectionInstance == null) {
             try {
-                return DriverManager.getConnection("jdbc:mysql://localhost:3306/paymentsdb", "root", "witcher");
+                connectionInstance = DriverManager.getConnection("jdbc:mysql://localhost:3306/paymentsdb", "root", "witcher");
+                connectionInstance.setAutoCommit(false);
+                return connectionInstance;
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }

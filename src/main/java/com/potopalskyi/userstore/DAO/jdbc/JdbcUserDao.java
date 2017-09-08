@@ -14,7 +14,7 @@ public class JdbcUserDao implements UserDao {
             "from users\n" +
             "join phones\n" +
             "on users.phones_id = phones.id\n";
-    private final static String SQL_QUERY_SAVE_USER = "insert into users(firstName, lastName, phones_id) values(?, ?, ?)";
+    private final static String SQL_QUERY_SAVE_USER = "insert into users(firstName, lastName, dateOfBirth, phones_id) values(?, ?, ?, ?)";
     private Connection connection;
 
     public JdbcUserDao() throws SQLException {
@@ -45,7 +45,8 @@ public class JdbcUserDao implements UserDao {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_SAVE_USER);
             preparedStatement.setString(1, user.getFirstName());
             preparedStatement.setString(2, user.getLastName());
-            preparedStatement.setLong(3, user.getPhone().getId());
+            preparedStatement.setDate(3, Date.valueOf(user.getDateOfBirth()));
+            preparedStatement.setLong(4, user.getPhone().getId());
             preparedStatement.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);

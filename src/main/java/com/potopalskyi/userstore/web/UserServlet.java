@@ -24,10 +24,15 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = RequestToUserParser.getUserFromRequest(req);
-        userService.add(user);
-        resp.setContentType("text/html;charset=utf-8");
-        resp.sendRedirect("/users");
+        try {
+            User user = RequestToUserParser.getUserFromRequest(req);
+            userService.add(user);
+            resp.setContentType("text/html;charset=utf-8");
+            resp.sendRedirect("/users");
+        }
+        catch (Exception e){
+            resp.getWriter().write("There is an exception" + e);
+        }
     }
 
     public void setUserService(IUserService userService) {
