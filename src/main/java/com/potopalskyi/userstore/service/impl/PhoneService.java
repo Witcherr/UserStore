@@ -12,6 +12,11 @@ public class PhoneService implements IPhoneService {
         return phoneDao.add(phone);
     }
 
+    @Override
+    public void delete(long id) {
+        phoneDao.delete(id);
+    }
+
     public void setPhoneDao(PhoneDao phoneDao) {
         this.phoneDao = phoneDao;
     }

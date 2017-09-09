@@ -33,6 +33,7 @@ public class Starter {
         usersServlet.setUserService(userService);
 
         UserDeleteServlet userDeleteServlet = new UserDeleteServlet();
+        userDeleteServlet.setUserService(userService);
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.addServlet(new ServletHolder(userServlet), "/addUser");

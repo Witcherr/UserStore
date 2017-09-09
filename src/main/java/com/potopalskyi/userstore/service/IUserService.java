@@ -9,4 +9,6 @@ public interface IUserService {
     List<User> getAll();
 
     void add(User user);
+
+    void delete(long id);
 }

@@ -7,4 +7,6 @@ public interface GenericDao<T> {
     default List<T> getAll(){return Collections.EMPTY_LIST;};
 
     long add(T t);
+
+    void delete(long id);
 }

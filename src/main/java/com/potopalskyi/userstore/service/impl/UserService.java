@@ -30,6 +30,17 @@ public class UserService implements IUserService {
         }
     }
 
+    @Override
+    public void delete(long id) {
+        try{
+            userDao.delete(id);
+            phoneService.delete(id);
+            transactionManager.commit();
+        }catch (Exception e){
+            transactionManager.rollback();
+        }
+    }
+
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }

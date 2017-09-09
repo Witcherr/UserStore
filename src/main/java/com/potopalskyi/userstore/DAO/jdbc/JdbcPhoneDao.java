@@ -9,6 +9,7 @@ import java.util.List;
 
 public class JdbcPhoneDao implements PhoneDao {
     private final static String SQL_QUERY_SAVE_PHONE = "insert into phones(countryCode, innerNumber, userId) values(?, ?, ?)";
+    private final static String SQL_QUERY_DELETE_PHONES = "delete from phones where userId = ?";
     private Connection connection;
 
     public JdbcPhoneDao() {
@@ -33,5 +34,16 @@ public class JdbcPhoneDao implements PhoneDao {
             throw new RuntimeException(e);
         }
         return -1;
+    }
+
+    @Override
+    public void delete(long id) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_DELETE_PHONES);
+            preparedStatement.setLong(1, id);
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

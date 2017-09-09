@@ -21,7 +21,8 @@ public class PageGenerator {
 
     public static PageGenerator getInstance(){
         if (pageGenerator == null){
-            return new PageGenerator();
+            pageGenerator = new PageGenerator();
+            return pageGenerator;
         }
         return pageGenerator;
     }
