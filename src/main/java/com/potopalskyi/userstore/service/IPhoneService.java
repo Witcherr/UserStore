@@ -4,7 +4,5 @@ import com.potopalskyi.userstore.entity.Phone;
 
 public interface IPhoneService {
 
-    void add(Phone phone);
-
-    long getMaxId();
+    long add(Phone phone);
 }

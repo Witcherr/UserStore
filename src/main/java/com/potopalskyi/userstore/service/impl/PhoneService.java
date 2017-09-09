@@ -8,13 +8,8 @@ public class PhoneService implements IPhoneService {
     private PhoneDao phoneDao;
 
     @Override
-    public void add(Phone phone) {
-        phoneDao.add(phone);
-    }
-
-    @Override
-    public long getMaxId() {
-        return phoneDao.getMaxId();
+    public long add(Phone phone) {
+        return phoneDao.add(phone);
     }
 
     public void setPhoneDao(PhoneDao phoneDao) {

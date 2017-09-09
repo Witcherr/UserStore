@@ -35,6 +35,11 @@ public class UserServlet extends HttpServlet {
         }
     }
 
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doDelete(req, resp);
+    }
+
     public void setUserService(IUserService userService) {
         this.userService = userService;
     }

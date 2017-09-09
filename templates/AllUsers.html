@@ -22,6 +22,7 @@
             <td>${user.getDateOfBirth()}</td>
             <td>${user.getPhone().getCountryCode()}</td>
             <td>${user.getPhone().getInnerNumber()}</td>
+            <td ><a href="/delete?id=<list:out value='${user.getId()}' />">Delete</a> </td>
         </tr>
     </#list>
 </table>
