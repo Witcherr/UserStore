@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.List;
 
 public class JdbcPhoneDao implements PhoneDao {
-    private final static String SQL_QUERY_SAVE_PHONE = "insert into phones(countryCode, innerNumber) values(?, ?)";
+    private final static String SQL_QUERY_SAVE_PHONE = "insert into phones(countryCode, innerNumber, userId) values(?, ?, ?)";
     private Connection connection;
 
     public JdbcPhoneDao() {
@@ -22,10 +22,11 @@ public class JdbcPhoneDao implements PhoneDao {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_SAVE_PHONE, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, phone.getCountryCode());
             preparedStatement.setString(2, phone.getInnerNumber());
+            preparedStatement.setLong(3, phone.getUserId());
             preparedStatement.execute();
-            ResultSet rs = preparedStatement.getGeneratedKeys();
-            if (rs.next()){
-                phoneId =rs.getLong(1);
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()){
+                phoneId =resultSet.getLong(1);
                 return phoneId;
             }
         } catch (SQLException e) {

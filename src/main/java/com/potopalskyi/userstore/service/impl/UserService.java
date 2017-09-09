@@ -21,9 +21,9 @@ public class UserService implements IUserService {
     @Override
     public void add(User user) {
         try {
-            long phoneId = phoneService.add(user.getPhone());
-            user.getPhone().setId(phoneId);
-            userDao.add(user);
+            long userId = userDao.add(user);
+            user.getPhone().setUserId(userId);
+            phoneService.add(user.getPhone());
             transactionManager.commit();
         } catch (Exception e) {
             transactionManager.rollback();

@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcUserDao implements UserDao {
-    private final static String SQL_QUERY_GET_ALL_USERS = "select users.id, firstName, lastName, dateOfBirth, countryCode, innerNumber\n" +
+    private final static String SQL_QUERY_GET_ALL_USERS = "select users.id userId, firstName, lastName, dateOfBirth, phones.id phoneId, countryCode, innerNumber\n" +
             "from users\n" +
             "join phones\n" +
-            "on users.phones_id = phones.id\n";
-    private final static String SQL_QUERY_SAVE_USER = "insert into users(firstName, lastName, dateOfBirth, phones_id) values(?, ?, ?, ?)";
+            "on users.id = phones.userId";
+    private final static String SQL_QUERY_SAVE_USER = "insert into users(firstName, lastName, dateOfBirth) values(?, ?, ?)";
     private Connection connection;
 
     public JdbcUserDao() throws SQLException {
@@ -40,16 +40,21 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public void add(User user) {
+    public long add(User user) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_SAVE_USER);
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY_SAVE_USER, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, user.getFirstName());
             preparedStatement.setString(2, user.getLastName());
             preparedStatement.setDate(3, Date.valueOf(user.getDateOfBirth()));
-            preparedStatement.setLong(4, user.getPhone().getId());
             preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if(resultSet.next()){
+                long userId = resultSet.getInt(1);
+                return userId;
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return -1;
     }
 }

@@ -20,10 +20,11 @@ public class UserRowMapperTest {
         UserRowMapper userRowMapper = new UserRowMapper();
         ResultSet resultSet = mock(ResultSet.class);
 
-        when(resultSet.getLong("id")).thenReturn(1L);
+        when(resultSet.getLong("userId")).thenReturn(1L);
         when(resultSet.getString("firstName")).thenReturn("Test First Name");
         when(resultSet.getString("lastName")).thenReturn("Test Last Name");
         when(resultSet.getDate("dateOfBirth")).thenReturn(Date.valueOf(LocalDate.of(2011, Month.JUNE, 11)));
+        when(resultSet.getLong("phoneId")).thenReturn(10L);
         when(resultSet.getString("countryCode")).thenReturn("Test country code");
         when(resultSet.getString("innerNumber")).thenReturn("Test inner number");
 
@@ -33,6 +34,7 @@ public class UserRowMapperTest {
         assertEquals("Test First Name", actualUser.getFirstName());
         assertEquals("Test Last Name", actualUser.getLastName());
         assertTrue(actualUser.getDateOfBirth().isEqual(LocalDate.of(2011, Month.JUNE, 11)));
+        assertEquals(10, actualUser.getPhone().getId());
         assertEquals("Test country code", actualUser.getPhone().getCountryCode());
         assertEquals("Test inner number", actualUser.getPhone().getInnerNumber());
     }

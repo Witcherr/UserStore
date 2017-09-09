@@ -4,6 +4,7 @@ public class Phone {
     private long id;
     private String countryCode;
     private String innerNumber;
+    private long userId;
 
     public long getId() {
         return id;
@@ -29,12 +30,21 @@ public class Phone {
         this.innerNumber = innerNumber;
     }
 
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         return "Phone{" +
                 "id=" + id +
                 ", countryCode='" + countryCode + '\'' +
                 ", innerNumber='" + innerNumber + '\'' +
+                ", userId=" + userId +
                 '}';
     }
 }

@@ -6,5 +6,5 @@ import java.util.List;
 public interface GenericDao<T> {
     default List<T> getAll(){return Collections.EMPTY_LIST;};
 
-    void add(T t);
+    long add(T t);
 }
