@@ -22,8 +22,10 @@ public class UserService implements IUserService {
     public void add(User user) {
         try {
             long userId = userDao.add(user);
-            user.getPhone().setUserId(userId);
-            phoneService.add(user.getPhone());
+            for (int i = 0; i < user.getPhoneList().size(); i++) {
+                user.getPhoneList().get(i).setUserId(userId);
+                phoneService.add(user.getPhoneList().get(i));
+            }
             transactionManager.commit();
         } catch (Exception e) {
             transactionManager.rollback();

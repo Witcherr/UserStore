@@ -33,6 +33,7 @@ public class PageGenerator {
         try {
             Template template = configuration.getTemplate(new File(PATH_PREFIX, filename).getPath());
             data.put("userList", userList);
+            
             template.process(data, out);
             out.flush();
         } catch (IOException | TemplateException e) {

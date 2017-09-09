@@ -1,16 +1,18 @@
 package com.potopalskyi.userstore.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User {
     private long id;
     private String firstName;
     private String lastName;
     private LocalDate dateOfBirth;
-    private Phone phone;
+    private List<Phone> phoneList;
 
     public User() {
-         this.phone = new Phone();
+         this.phoneList = new ArrayList<>();
     }
 
     public long getId() {
@@ -45,12 +47,12 @@ public class User {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public List<Phone> getPhoneList() {
+        return phoneList;
     }
 
-    public void setPhone(Phone phone) {
-        this.phone = phone;
+    public void setPhoneList(List<Phone> phoneList) {
+        this.phoneList = phoneList;
     }
 
     @Override
@@ -60,7 +62,7 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
-                ", phone=" + phone +
+                ", phoneList=" + phoneList +
                 '}';
     }
 }

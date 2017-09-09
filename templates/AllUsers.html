@@ -5,7 +5,7 @@
     <title></title>
 </head>
 <body>
-<table>
+<table cellspacing="2" border="1" cellpadding="5" width="800">
     <tr>
         <th>id</th>
         <th>FirstName</th>
@@ -20,9 +20,23 @@
             <td>${user.getFirstName()}</td>
             <td>${user.getLastName()}</td>
             <td>${user.getDateOfBirth()}</td>
-            <td>${user.getPhone().getCountryCode()}</td>
-            <td>${user.getPhone().getInnerNumber()}</td>
-            <td ><a href="/delete?id=${user.getId()}">Delete</a> </td>
+            <#assign x = 1>
+                <td>
+                    <#list user.getPhoneList() as phones>
+                        CountryCode ${x} : ${phones.getCountryCode()}
+                        <br> </br>
+                        <#assign x = x + 1>
+                    </#list>
+                </td>
+                <#assign x = 1>
+                    <td>
+                        <#list user.getPhoneList() as phones>
+                            Inner Number ${x} : ${phones.getInnerNumber()}
+                            <br> </br>
+                            <#assign x = x + 1>
+                        </#list>
+                    </td>
+                    <td><a href="/delete?id=${user.getId()}">Delete</a></td>
         </tr>
     </#list>
 </table>

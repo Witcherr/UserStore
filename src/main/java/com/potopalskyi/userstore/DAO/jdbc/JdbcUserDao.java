@@ -10,10 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcUserDao implements UserDao {
-    private final static String SQL_QUERY_GET_ALL_USERS = "select users.id userId, firstName, lastName, dateOfBirth, phones.id phoneId, countryCode, innerNumber\n" +
+    private final static String SQL_QUERY_GET_ALL_USERS = "select users.id userId, firstName, lastName, dateOfBirth, \n" +
+            "group_concat(phones.id order by phones.id separator ', ') as phoneIdList, \n" +
+            "group_concat(countryCode order by phones.id separator ', ') as countryCodeList, \n" +
+            "group_concat(innerNumber order by phones.id separator ', ') as innerNumberList\n" +
             "from users\n" +
-            "left join phones\n" +
-            "on users.id = phones.userId";
+            "join phones\n" +
+            "on users.id = phones.userId\n" +
+            "group by 1, 2, 3, 4";
     private final static String SQL_QUERY_SAVE_USER = "insert into users(firstName, lastName, dateOfBirth) values(?, ?, ?)";
     private final static String SQL_QUERY_DELETE_USER = "delete from users where id = ?";
     private Connection connection;
