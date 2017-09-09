@@ -7,6 +7,7 @@ import com.potopalskyi.userstore.dao.jdbc.JdbcUserDao;
 import com.potopalskyi.userstore.service.impl.PhoneService;
 import com.potopalskyi.userstore.service.impl.UserService;
 import com.potopalskyi.userstore.web.UserDeleteServlet;
+import com.potopalskyi.userstore.web.UserSearchByInnerCodeServlet;
 import com.potopalskyi.userstore.web.UserServlet;
 import com.potopalskyi.userstore.web.UsersServlet;
 import org.eclipse.jetty.server.Server;
@@ -35,10 +36,14 @@ public class Starter {
         UserDeleteServlet userDeleteServlet = new UserDeleteServlet();
         userDeleteServlet.setUserService(userService);
 
+        UserSearchByInnerCodeServlet userSearchByInnerCodeServlet = new UserSearchByInnerCodeServlet();
+        userSearchByInnerCodeServlet.setUserService(userService);
+
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.addServlet(new ServletHolder(userServlet), "/addUser");
         context.addServlet(new ServletHolder(usersServlet), "/users");
         context.addServlet(new ServletHolder(userDeleteServlet), "/delete");
+        context.addServlet(new ServletHolder(userSearchByInnerCodeServlet), "/search");
 
         Server server = new Server(8080);
         server.setHandler(context);

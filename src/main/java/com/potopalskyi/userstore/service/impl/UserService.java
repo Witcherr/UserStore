@@ -43,6 +43,11 @@ public class UserService implements IUserService {
         }
     }
 
+    @Override
+    public List<User> getUsersByInnerCode(String innerCode) {
+        return userDao.getUsersByInnerCode(innerCode);
+    }
+
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }

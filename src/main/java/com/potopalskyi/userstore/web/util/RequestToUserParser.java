@@ -19,8 +19,6 @@ public class RequestToUserParser {
             user.setLastName(req.getParameter("lastName"));
             user.setDateOfBirth(LocalDate.parse(req.getParameter("dateOfBirth")));
             user.setPhoneList(getPhoneFromRequest(req, "innerNumber_", "countryCode_"));
-            //user.getPhoneList().setCountryCode(req.getParameter("countryCode"));
-            //user.getPhoneList().setInnerNumber(req.getParameter("innerNumber"));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -16,4 +16,14 @@ public class JdbcUserDaoITest {
             System.out.println(user);
         }
     }
+
+    @Test
+    public void testGetUsersByInnerCode() throws Exception {
+        JdbcUserDao jdbcUserDao = new JdbcUserDao();
+        List<User> userList = jdbcUserDao.getUsersByInnerCode("24");
+
+        for(User user: userList){
+            System.out.println(user);
+        }
+    }
 }

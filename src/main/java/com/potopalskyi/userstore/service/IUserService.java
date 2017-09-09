@@ -11,4 +11,6 @@ public interface IUserService {
     void add(User user);
 
     void delete(long id);
+
+    List<User> getUsersByInnerCode(String innerCode);
 }
