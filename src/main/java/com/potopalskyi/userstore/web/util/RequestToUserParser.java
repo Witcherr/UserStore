@@ -25,7 +25,7 @@ public class RequestToUserParser {
         return user;
     }
 
-    private static List<Phone> getPhoneFromRequest(HttpServletRequest req, String countryCodeParameter, String innerNumberParameter) {
+    protected static List<Phone> getPhoneFromRequest(HttpServletRequest req, String countryCodeParameter, String innerNumberParameter) {
         String countryCode;
         String innerNumber;
         List<Phone> phoneList = new ArrayList<>();

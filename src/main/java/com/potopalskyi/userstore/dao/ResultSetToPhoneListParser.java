@@ -26,12 +26,12 @@ public class ResultSetToPhoneListParser {
         return phoneList;
     }
 
-    private static String handleNull(ResultSet resultSet, String columnName) throws SQLException {
+    protected static String handleNull(ResultSet resultSet, String columnName) throws SQLException {
         String value = resultSet.getString(columnName);
         return (resultSet.wasNull()) ? "" : value;
     }
 
-    private static boolean validatePhoneList(String phoneId){
+    protected static boolean validatePhoneList(String phoneId){
         return !"".equals(phoneId);
     }
 }

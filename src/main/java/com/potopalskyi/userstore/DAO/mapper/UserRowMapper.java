@@ -19,7 +19,7 @@ public class UserRowMapper {
         return user;
     }
 
-    private String handleNull(ResultSet resultSet, String columnName) throws SQLException {
+    protected String handleNull(ResultSet resultSet, String columnName) throws SQLException {
         String value = resultSet.getString(columnName);
         return (resultSet.wasNull()) ? "" : value;
     }

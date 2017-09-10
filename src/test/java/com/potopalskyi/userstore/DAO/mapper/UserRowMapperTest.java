@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.sql.Date;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Month;
 
@@ -27,12 +28,9 @@ public class UserRowMapperTest {
         when(resultSet.getString("phoneIdList")).thenReturn("4, 5");
         when(resultSet.getString("countryCodeList")).thenReturn("12, 345345");
         when(resultSet.getString("innerNumberList")).thenReturn("1--2, 34-5-345");
-        //when(resultSet.getLong("phoneId")).thenReturn(10L);
-        //when(resultSet.getString("countryCode")).thenReturn("Test country code");
-        //when(resultSet.getString("innerNumber")).thenReturn("Test inner number");
 
         User actualUser = userRowMapper.mapRow(resultSet);
-        System.out.println(actualUser.getPhoneList().get(0).getInnerNumber());
+
         assertEquals(1, actualUser.getId());
         assertEquals("Test First Name", actualUser.getFirstName());
         assertEquals("Test Last Name", actualUser.getLastName());
@@ -40,9 +38,24 @@ public class UserRowMapperTest {
         assertEquals(5L, actualUser.getPhoneList().get(1).getId());
         assertEquals("12", actualUser.getPhoneList().get(0).getCountryCode());
         assertEquals("34-5-345", actualUser.getPhoneList().get(1).getInnerNumber());
-        //assertEquals(10, actualUser.getPhoneList().getId());
-        //assertEquals("Test country code", actualUser.getPhoneList().getCountryCode());
-        //assertEquals("Test inner number", actualUser.getPhoneList().getInnerNumber());
+    }
+
+    @Test
+    public void testHandleNull() throws SQLException {
+        UserRowMapper userRowMapper = new UserRowMapper();
+        ResultSet resultSet = mock(ResultSet.class);
+        when(resultSet.getString("test")).thenReturn("Testvalue");
+        when(resultSet.wasNull()).thenReturn(true);
+
+        String actualValueNull =  userRowMapper.handleNull(resultSet, "test");
+
+        assertEquals("", actualValueNull);
+
+        when(resultSet.wasNull()).thenReturn(false);
+
+        String actualValue2 =  userRowMapper.handleNull(resultSet, "test");
+
+        assertEquals("Testvalue", actualValue2);
     }
 
 
